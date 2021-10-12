@@ -2,6 +2,9 @@ import Fluent
 import Vapor
 
 func routes(_ app: Application) throws {
+    
+    let routerGrouped = app.grouped("main", "home")
+    
     app.get { req in
         return req.view.render("index", ["title": "Hello Vapor!"])
     };app.get { req in
@@ -13,8 +16,11 @@ func routes(_ app: Application) throws {
         return "こんにちは"
     }
     
+    routerGrouped.get("info") { req in
+        return "Infomation"
+    }
  
-
+  
     app.get("hello") { req -> String in
         return "Hello, world!"
     }
