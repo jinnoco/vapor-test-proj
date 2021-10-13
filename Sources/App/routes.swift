@@ -11,6 +11,13 @@ func routes(_ app: Application) throws {
         return "It works!"
     }
     
+    app.get("hello", ":name") { req -> String in
+        if let name = req.parameters.get("name") {
+            return "Hello \(name)"
+        }
+        return "no result"
+    }
+
     // http://127.0.0.1:8080/abcで文字列を返す
     app.get("abc") { req in
         return "こんにちは"
